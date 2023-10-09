@@ -1,9 +1,8 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import ItemListComponent from './components/ItemListComponent.vue';
 
 const hello = ref('Hello VITE')
-const idade = ref(17)
 const userDbFake = [
   {
     name: 'John',
@@ -36,9 +35,6 @@ onMounted(()=>{
   hello.value = "Hello Vite & Vue"
 })
 
-const getMaiorDeIdade = computed(()=> {
-  return idade.value < 18 ? "Menor de Idade" : "Maior de Idade"
-})
 </script>
 
 <template>
@@ -48,7 +44,7 @@ const getMaiorDeIdade = computed(()=> {
       <br />
       <ItemListComponent v-for="item in userDbFake"
       :key="item"
-      :second-name="item.secondName"
+      :secondName="item.secondName"
       :username="item.name"
       :phone="item.phone"
       :mail="item.mail"/>
