@@ -3,6 +3,18 @@ import { onMounted, ref } from 'vue'
 import ItemListComponent from './components/ItemListComponent.vue';
 
 const hello = ref('Hello VITE')
+
+
+class User {
+  constructor(
+    public name: string,
+    public secondName: string,
+    public phone: string,
+    public mail: string
+  ) {}
+}
+
+
 const userDbFake = [
   {
     name: 'John',
@@ -31,6 +43,10 @@ const userDbFake = [
 ];
 
 
+const users: User[] = userDbFake.map(user => new User(user.name, user.secondName, user.phone, user.mail));
+
+
+
 onMounted(()=>{
   hello.value = "Hello Vite & Vue"
 })
@@ -42,8 +58,8 @@ onMounted(()=>{
     <div style="padding: 1rem; flex-wrap: wrap; max-width: 80vw; border-radius: 10px; background-color: #7484e0; display: flex; flex-direction: row; align-items: center; justify-content: center;">
       <h1 style="width: 100%; text-align: center; margin-bottom: 10px;">{{ hello }}</h1>
       <br />
-      <ItemListComponent v-for="item in userDbFake"
-      :key="item"
+      <ItemListComponent v-for="item in users"
+      :key="item.name"
       :secondName="item.secondName"
       :username="item.name"
       :phone="item.phone"
